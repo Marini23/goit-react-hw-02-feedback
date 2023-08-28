@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 
@@ -9,12 +9,14 @@ export class App extends Component {
     bad: 0
   };
 
+  
   leaveFeedback = e => {
     const target = e;
-
-    this.setState();
-    console.log(target);
+     console.log(target);
+    // this.setState(prevState => ());
+   
    };
+
 
 
 
@@ -22,11 +24,11 @@ export class App extends Component {
 
   render() {
 
-    const options = this.state;
+    const {good, neutral, bad} = this.state;
     
-    const { good, neutral, bad } = options;
+    const options = Object.keys(this.state);
     
-    console.log(options);
+   
 
     return (
       <div

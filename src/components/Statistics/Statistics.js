@@ -1,4 +1,8 @@
-export const Statistics = ({good,neutral,bad,total,positivePercentage}) => {
+import React from 'react';
+
+
+
+export const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
     return (
         <div>
             <h1>Statistics</h1>
