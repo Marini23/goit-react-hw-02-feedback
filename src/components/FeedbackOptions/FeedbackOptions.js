@@ -1,19 +1,16 @@
 import React from 'react';
 
+import {
+    BtnWrapper,
+    BtnItem
+} from './FeedbackOptions.styled';
+
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-    console.log(options);
-        return (<section>
-
-            
+        return (<BtnWrapper>
             {options.map(option => 
-                <button type="button" key={option} onClick ={()=> onLeaveFeedback(option)}>{option}</button>
+                <BtnItem type="button" key={option} onClick ={()=> onLeaveFeedback(option)}>{option}</BtnItem>
             )}
-            
-            {/* <button type="button">Good</button>
-            <button type="button">Neutral</button>
-            <button type="button">Bad</button> */}
-        
-    </section>);
+        </BtnWrapper>);
     
     };

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
+import { Notification } from './Notification/Notification';
+import { GlobalStyles } from './GlobalStyle';
+
+
 
 export class App extends Component {
   state = {
@@ -12,15 +17,18 @@ export class App extends Component {
   
   leaveFeedback = e => {
     const target = e;
-     console.log(target);
-    // this.setState(prevState => ());
-   
-   };
+    this.setState({
+    [target]: this.state[target] + 1
+    });
+    };
 
+  countTotalFeedback = ({good, neutral, bad}) => { 
+    return (good + neutral + bad);
+  };
 
-
-
-
+  countPositiveFeedbackPercentage = ({good, neutral, bad}) => {
+    return (Math.round( good * 100  / this.countTotalFeedback(this.state)));
+  };
 
   render() {
 
@@ -28,50 +36,31 @@ export class App extends Component {
     
     const options = Object.keys(this.state);
     
-   
+    const totalFeedback = (good + neutral + bad) > 0;
 
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: `column`,
-          justifyContent: 'start',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101'
-        }}
-      >
-        <FeedbackOptions
+      
+      <div>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
           options={options}
           onLeaveFeedback={this.leaveFeedback}
         />
-        <Statistics
+        </Section>
+        <Section title="Statistics">
+          {totalFeedback ? <Statistics
           good={good}
           neutral={neutral}
           bad={bad}
-          total={0}
-          positivePercentage={0} />
+          total={this.countTotalFeedback(this.state)}
+          positivePercentage={this.countPositiveFeedbackPercentage(this.state)} /> : <Notification message="There is no feedback"/>}
+        
+        
+        </Section>
+        <GlobalStyles/>
       </div>
     );
     
   };
 };
 
-
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}
-//     >
-//       React homework template
-//     </div>
-//   );
-// };
