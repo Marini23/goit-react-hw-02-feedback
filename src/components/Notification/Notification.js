@@ -1,7 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { MessageText } from './Notification.styled';
 
 export const Notification = ({ message }) => {
     return (
-        <p>{message}</p>
+        <MessageText>{message}</MessageText>
     );
+};
+
+
+Notification.ptopTypes = {
+    message: PropTypes.string,
 };

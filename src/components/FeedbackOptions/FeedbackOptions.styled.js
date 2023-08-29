@@ -9,7 +9,7 @@ gap: 10px;
 
 export const BtnItem = styled.button`
 width: 100px;
-font-size: 18px;
+font-size: 22px;
 text-transform: capitalize;
 padding: 10px;
 `;

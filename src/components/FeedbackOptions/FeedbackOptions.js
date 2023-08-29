@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import {
     BtnWrapper,
     BtnItem
@@ -13,4 +13,9 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
             )}
         </BtnWrapper>);
     
-    };
+};
+    
+FeedbackOptions.propTypes = {
+    options: PropTypes.array,
+    onLeaveFeedback: PropTypes.func,
+};
